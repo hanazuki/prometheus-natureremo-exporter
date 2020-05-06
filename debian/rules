@@ -1,0 +1,11 @@
+#!/usr/bin/make -f
+export DH_OPTIONS
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+
+override_dh_installsystemd:
+	dh_installsystemd prometheus-natureremo-exporter.service

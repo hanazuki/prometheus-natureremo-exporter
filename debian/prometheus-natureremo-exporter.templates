@@ -1,0 +1,4 @@
+Template: prometheus-natureremo-exporter/access_token
+Type: string
+_Description: Access token for Nature Remo:
+ Visit https://home.nature.global to generate one.

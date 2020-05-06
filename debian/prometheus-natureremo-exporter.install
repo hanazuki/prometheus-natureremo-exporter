@@ -1,0 +1,2 @@
+bin/prometheus-natureremo-exporter /usr/bin
+lib/* /usr/lib/ruby/vendor_ruby/

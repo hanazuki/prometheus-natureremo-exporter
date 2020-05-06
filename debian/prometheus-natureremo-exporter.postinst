@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -e
+
+case "$1" in
+    configure)
+        if ! getent passwd prometheus > /dev/null; then
+            adduser --quiet --system --home /var/lib/prometheus --no-create-home \
+                    --group --gecos "Prometheus daemon" prometheus || true
+        fi
+
+        if [[ -e /usr/share/debconf/confmodule ]]; then
+            . /usr/share/debconf/confmodule
+
+            DEFAULT_FILE=/etc/default/prometheus-natureremo-exporter
+            if [[ ! -e "$DEFAULT_FILE" ]]; then
+                db_get prometheus-natureremo-exporter/access_token || true
+                access_token=$RET
+
+                touch "$DEFAULT_FILE"
+                chown root:root "$DEFAULT_FILE"
+                chmod 600 "$DEFAULT_FILE"
+                cat <<EOF >"$DEFAULT_FILE"
+NATURE_ACCESS_TOKEN=${access_token}
+EOF
+            fi
+
+        fi
+;;
+    purge)
+        if [[ -e /usr/share/debconf/confmodule ]]; then
+            . /usr/share/debconf/confmodule
+            db_purge
+        fi
+        ;;
+esac
+
+#DEBHELPER#

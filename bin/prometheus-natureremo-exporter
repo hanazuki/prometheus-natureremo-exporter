@@ -24,16 +24,24 @@ OptionParser.new do |o|
   o.on('--log.level', 'Log level (default: INFO)') {|v| logger.level = Logger::Severity.const_get(v.upcase, false) }
 
   o.on('--natureremo.endpoint URI') {|v| options[:natureremo][:api_endpoint] = v }
-  o.on('--natureremo.token [file:PATHNAME | env:VAR]', 'Nature Remo API token') do |v|
-    options[:natureremo][:api_token] =
+  o.on('--natureremo.access-token [file:PATHNAME | env:VAR]', 'Nature Remo API token') do |v|
+    token =
       case v
       when /\Afile:/
         File.read($').chomp
       when /\Aenv:/
         ENV.fetch($')
       else
-        fail 'Specify --natureremo.token as file: or env:'
+        STDERR.puts 'Specify --natureremo.token in file:PATHNAME or env:VAR format'
+        exit 1
       end
+
+    if token.empty?
+      STDERR.puts 'Token is empty'
+      exit 1
+    end
+
+    options[:natureremo][:api_token] = token
   end
 
   o.on('--web.listen-address ADDR', 'Address to listen on for telemetry') {|v| options[:listen_address] = v }

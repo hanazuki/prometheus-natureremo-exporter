@@ -1,0 +1,21 @@
+Source: prometheus-natureremo-exporter
+Section: net
+Priority: optional
+Maintainer: Kasumi Hanazuki <kasumi@rollingapple.net>
+Build-Depends:
+ debhelper (>= 11), po-debconf
+Standards-Version: 4.4.1
+Vcs-Git: https://github.com/hanazuki/prometheus-natureremo-exporter
+Vcs-Browser: https://github.com/hanazuki/prometheus-natureremo-exporter
+Homepage: https://github.com/hanazuki/prometheus-natureremo-exporter
+
+Package: prometheus-natureremo-exporter
+Architecture: all
+Depends:
+ ruby,
+ ruby-prometheus-client (>= 2.0.0), ruby-prometheus-client (<< 3.0.0),
+ ruby-faraday,
+ ruby-faraday-middleware,
+ ${misc:Depends}
+Description: Prometheus exporter for Nature Remo
+ Prometheus exporter that collects sensor data from Nature Remo
