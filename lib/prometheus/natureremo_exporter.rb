@@ -32,7 +32,10 @@ class NatureRemoExporter
       ac_mode: @registry.gauge(:natureremo_ac_mode, docstring: 'Air-conditioning mode setting', labels: appliance_labels + %i[mode]),
       ac_temperature: @registry.gauge(:natureremo_ac_temperature, docstring: 'Air-conditioning temperature setting', labels: appliance_labels + %i[mode unit]),
       light_on: @registry.gauge(:natureremo_light_on, docstring: 'Wheather light is turned on', labels: appliance_labels),
-      light_brightness: @registry.gauge(:natureremo_light_brightness, docstring: 'Light brightness setting', labels: appliance_labels)
+      light_brightness: @registry.gauge(:natureremo_light_brightness, docstring: 'Light brightness setting', labels: appliance_labels),
+      smart_meter_fwd_energy: @registry.gauge(:natureremo_smart_meter_forward_energy_kilowatthours, docstring: 'Cumulative imported energy', labels: appliance_labels),
+      smart_meter_bwd_energy: @registry.gauge(:natureremo_smart_meter_backward_energy_kilowatthours, docstring: 'Cumulative exported energy', labels: appliance_labels),
+      smart_meter_power: @registry.gauge(:natureremo_smart_meter_instantaneous_power_watts, docstring: 'Instantaneous power', labels: appliance_labels),
     }
   end
 
@@ -123,6 +126,8 @@ class NatureRemoExporter
         update_ac(appliance, labels: labels)
       when 'LIGHT'
         update_light(appliance, labels: labels)
+      when 'SMART_METER'
+        update_smart_meter(appliance, labels: labels)
       end
     rescue => e
       @logger.error(__method__) { e }
@@ -159,6 +164,33 @@ class NatureRemoExporter
     brightness = state['brightness']
     unless brightness.empty?
       @metrics[:light_brightness].set(brightness.to_f, labels: labels)
+    end
+  end
+
+  def update_smart_meter(appliance, labels:)
+    echonetlite_properties = appliance.dig('smart_meter', 'echonetlite_properties')
+    props = ->(epc) { echonetlite_properties.find {|prop| prop['epc'] == epc }&.[]('val') }
+
+    coeff = props[211]&.to_i || 1
+    unit = sm_unit(props[225].to_i)
+
+    if fwd_energy = props[224]
+      @metrics[:smart_meter_fwd_energy].set(fwd_energy.to_i * coeff * unit, labels: labels)
+    end
+    if bwd_energy = props[227]
+      @metrics[:smart_meter_bwd_energy].set(bwd_energy.to_i * coeff * unit, labels: labels)
+    end
+
+    if power = props[231]
+      @metrics[:smart_meter_power].set(power.to_i, labels: labels)
+    end
+  end
+
+  def sm_unit(val)
+    if val < 0x0A
+      10 ** -val
+    else
+      10 ** (val - 0x09)
     end
   end
 
