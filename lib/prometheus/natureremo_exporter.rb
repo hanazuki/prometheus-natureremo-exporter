@@ -33,7 +33,8 @@ class NatureRemoExporter
       sensor_offset_humidity: @registry.gauge(:natureremo_sensor_offset_humidity, docstring: 'Humidity offset', labels: device_labels),
       ac_on: @registry.gauge(:natureremo_ac_on, docstring: 'Wheather air-conditioning is turned on', labels: appliance_labels),
       ac_mode: @registry.gauge(:natureremo_ac_mode, docstring: 'Air-conditioning mode setting', labels: appliance_labels + %i[mode]),
-      ac_temperature: @registry.gauge(:natureremo_ac_temperature, docstring: 'Air-conditioning temperature setting', labels: appliance_labels + %i[mode unit]),
+      ac_temperature_c: @registry.gauge(:natureremo_ac_temperature_celsius, docstring: 'Air-conditioning temperature setting', labels: appliance_labels + %i[mode]),
+      ac_temperature_f: @registry.gauge(:natureremo_ac_temperature_fahrenheit, docstring: 'Air-conditioning temperature setting', labels: appliance_labels + %i[mode]),
       light_on: @registry.gauge(:natureremo_light_on, docstring: 'Wheather light is turned on', labels: appliance_labels),
       light_brightness: @registry.gauge(:natureremo_light_brightness, docstring: 'Light brightness setting', labels: appliance_labels),
       smart_meter_fwd_energy: @registry.gauge(:natureremo_smart_meter_forward_energy_kilowatthours, docstring: 'Cumulative imported energy', labels: appliance_labels),
@@ -152,8 +153,12 @@ class NatureRemoExporter
     end
 
     temp = settings['temp']
-    temp_unit = aircon['tempUnit']
-    @metrics[:ac_temperature].set(temp.to_f, labels: labels.merge(mode: mode, unit: temp_unit))
+    case aircon['tempUnit']
+    when 'c'
+      @metrics[:ac_temperature_c].set(temp.to_f, labels: labels.merge(mode: mode))
+    when 'f'
+      @metrics[:ac_temperature_f].set(temp.to_f, labels: labels.merge(mode: mode))
+    end
   end
 
   def update_light(appliance, labels:)
