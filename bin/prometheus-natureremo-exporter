@@ -48,10 +48,11 @@ OptionParser.new do |o|
   o.on('--web.telemetry-path PATH', 'Path under which to expose metrics') {|v| options[:telemetry_path] = v }
 end.parse!(ARGV)
 
-def fetch_telemetry(logger, options)
+def collect_telemetry(logger, options, cache: nil)
   NatureRemoExporter.new(
     registry = Prometheus::Client::Registry.new,
     logger: logger,
+    cache: cache,
     **options[:natureremo],
   ).update
 
@@ -59,7 +60,7 @@ def fetch_telemetry(logger, options)
 end
 
 if output = options[:output]
-  telemetry = fetch_telemetry(logger, options)
+  telemetry = collect_telemetry(logger, options)
   if output == :stdout
     puts telemetry
     exit
@@ -75,6 +76,45 @@ if output = options[:output]
   exit
 end
 
+class Cache
+  def initialize(ttl:)
+    @ttl = ttl
+    @store = {}
+    @mutex = Mutex.new
+  end
+
+  def read(key)
+    @mutex.synchronize do
+      unless entry = @store[key]
+        return
+      end
+
+      if now >= entry.fetch(:expires)
+        entry.delete(key)
+        return
+      end
+      entry.fetch(:content)
+    end
+  end
+
+  def write(key, content)
+    @mutex.synchronize do
+      @store[key] = {
+        content: content,
+        expires: now + @ttl,
+      }
+    end
+  end
+
+  private
+
+  def now
+    Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  end
+end
+
+cache = Cache.new(ttl: 60)
+
 require 'webrick'
 host, port = options.fetch(:listen_address).split(':', 2)
 WEBrick::HTTPServer.new(
@@ -84,6 +124,6 @@ WEBrick::HTTPServer.new(
 ).tap do |server|
   server.mount_proc(options[:telemetry_path]) do |req, res|
     res['content-type'] = 'text/plain; version=0.0.4'
-    res.body = fetch_telemetry(logger, options)
+    res.body = collect_telemetry(logger, options, cache: cache)
   end
 end.start

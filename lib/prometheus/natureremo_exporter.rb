@@ -11,6 +11,9 @@ class NatureRemoExporter
       conn.authorization :Bearer, @config.fetch(:api_token)
       conn.headers['User-Agent'] = "natureremo_exporter (+https://github.com/hanazuki/natureremo_exporter) Faraday/#{Faraday::VERSION}"
 
+      if cache = @config[:cache]
+        conn.response :caching, cache
+      end
       conn.response :json, content_type: 'application/json'
       conn.response :logger, @logger, log_level: :debug, headers: {response: true}
 
