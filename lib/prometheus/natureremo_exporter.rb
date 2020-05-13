@@ -130,7 +130,7 @@ class NatureRemoExporter
         update_ac(appliance, labels: labels)
       when 'LIGHT'
         update_light(appliance, labels: labels)
-      when 'SMART_METER'
+      when 'EL_SMART_METER'
         update_smart_meter(appliance, labels: labels)
       end
     rescue => e
