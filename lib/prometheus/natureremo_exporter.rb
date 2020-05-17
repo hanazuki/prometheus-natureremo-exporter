@@ -3,9 +3,9 @@ require 'faraday_middleware'
 
 class NatureRemoExporter
   def initialize(registry, logger:, **config)
-    @config = config.merge(
+    @config = {
       api_endpoint: 'https://api.nature.global',
-    ).freeze
+    }.merge(config).freeze
     @logger = logger
     @conn = Faraday.new(url: @config.fetch(:api_endpoint)) do |conn|
       conn.authorization :Bearer, @config.fetch(:api_token)
