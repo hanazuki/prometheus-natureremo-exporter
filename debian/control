@@ -3,7 +3,7 @@ Section: net
 Priority: optional
 Maintainer: Kasumi Hanazuki <kasumi@rollingapple.net>
 Build-Depends:
- debhelper (>= 11), po-debconf
+ debhelper-compat (= 11), po-debconf
 Standards-Version: 4.4.1
 Vcs-Git: https://github.com/hanazuki/prometheus-natureremo-exporter
 Vcs-Browser: https://github.com/hanazuki/prometheus-natureremo-exporter
