@@ -3,19 +3,19 @@ Section: net
 Priority: optional
 Maintainer: Kasumi Hanazuki <kasumi@rollingapple.net>
 Build-Depends:
- debhelper-compat (= 11), po-debconf
+ debhelper-compat (= 11),
+ po-debconf,
+ golang-any (>= 2:1.13~),
+ dh-golang
 Standards-Version: 4.4.1
 Vcs-Git: https://github.com/hanazuki/prometheus-natureremo-exporter
 Vcs-Browser: https://github.com/hanazuki/prometheus-natureremo-exporter
 Homepage: https://github.com/hanazuki/prometheus-natureremo-exporter
+XS-Go-Import-Path: github.com/hanazuki/prometheus-natureremo-exporter
 
 Package: prometheus-natureremo-exporter
-Architecture: all
-Depends:
- ruby,
- ruby-prometheus-client (>= 2.0.0), ruby-prometheus-client (<< 3.0.0),
- ruby-faraday,
- ruby-faraday-middleware,
- ${misc:Depends}
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Built-Using: ${misc:Built-Using}
 Description: Prometheus exporter for Nature Remo
  Prometheus exporter that collects sensor data from Nature Remo
