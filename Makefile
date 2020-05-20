@@ -1,4 +1,9 @@
-all:
+all: build man
+
+build:
 	go build
 
-.PHONY: all
+man:
+	asciidoctor -b manpage man/*.adoc
+
+.PHONY: all build man

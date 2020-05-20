@@ -24,7 +24,7 @@ func main() {
 		metricsPath   = kingpin.Flag("web.telemetry-path", "Path under which to expose metrics.").Default("/metrics").String()
 
 		natureremoEndpoint    = kingpin.Flag("natureremo.endpoint", "Nature Remo API endpoint.").Default(natureremo.DEFAULT_ENDPOINT).String()
-		natureremoAccessToken = kingpin.Flag("natureremo.access-token", "Nature Remo API access token.").PlaceHolder("[file:PATH|env:VAR]").Required().String()
+		natureremoAccessToken = kingpin.Flag("natureremo.access-token", "Nature Remo API access token.").PlaceHolder("file:PATH|env:VAR").Required().String()
 	)
 
 	promlogConfig := &promlog.Config{}

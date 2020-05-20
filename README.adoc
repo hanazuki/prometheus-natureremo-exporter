@@ -1,0 +1,46 @@
+= prometheus-natureremo-exporter(1)
+:doctype: manpage
+:mansource: github.com/hanazuki/prometheus-natureremo-exporter
+
+== Name
+
+prometheus-natureremo-exporter - Prometheus exporter for Nature Remo
+
+== Synopsis
+
+*prometheus-natureremo-exporter* _OPTION_...
+
+== Description
+prometheus-natureremo-exporter is a Prometheus exporter for https://nature.global/[Nature Remo],
+which exposes telemetry from integrated sensors in Nature Remo series and smart meters linked to Nature Remo E series.
+
+== Options
+
+*--help*, *-h*::
+  Prints command usage.
+
+*--web.listen-address*=_ADDR_::
+  Listens __ADDR__ for telemetry. Default: ":9539"
+
+*--web.telemetry-path*=_PATH_::
+  Exposes metrics under _PATH_. Deafult: "/metrics"
+
+*--natureremo.access-token*=file:__PATH__|env:__VAR__::
+  *(Required)* Tells the exporter to obtain API access token from the specified source.
+  **file**:__PATH__:::
+    Read the token from the file at _PATH_.
+  **env**:__VAR__:::
+    Obtain the token from the environment variable _VAR_.
+
+*--natureremo.endpoint*=_URI_::
+  Tells the exporter to use the _URI_ as the API endpoint. Default: "https://api.nature.global"
+
+== API Usage
+prometheus-natureremo-exporter makes two API calls per scrape. It is recommended to either 1) set `scrape_interval` to 1m, or 2) set up a caching proxy and specify `--natureremo.endpoint=https://caching-proxy` while keeping `scrape_interval` to a smaller value.
+
+== Resources
+
+*Website:* https://github.com/hanazuki/prometheus-natureremo-exporter
+
+== License
+This software is licensed under The MIT License. See link:LICENSE[the `LICENSE` file] for terms.
