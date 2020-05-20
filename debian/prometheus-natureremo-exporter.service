@@ -5,8 +5,7 @@ Documentation=https://github.com/prometheus-natureremo-expoter
 [Service]
 Restart=on-failure
 User=prometheus
-EnvironmentFile=/etc/default/prometheus-natureremo-exporter
-ExecStart=/usr/bin/prometheus-natureremo-exporter --natureremo.access-token=env:NATURE_ACCESS_TOKEN
+ExecStart=/usr/bin/prometheus-natureremo-exporter --natureremo.access-token=file:/etc/prometheus/natureremo/access_token
 
 [Install]
 WantedBy=multi-user.target

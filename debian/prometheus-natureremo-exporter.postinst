@@ -12,17 +12,18 @@ case "$1" in
         if [[ -e /usr/share/debconf/confmodule ]]; then
             . /usr/share/debconf/confmodule
 
-            DEFAULT_FILE=/etc/default/prometheus-natureremo-exporter
-            if [[ ! -e "$DEFAULT_FILE" ]]; then
+            TOKEN_FILE=/etc/prometheus/natureremo/access_token
+            if [[ ! -d "$(dirname "$TOKEN_FILE")" ]]; then
+                install -d -m 0750 -o root -g prometheus "$(dirname "$TOKEN_FILE")"
+            fi
+            if [[ ! -e "$TOKEN_FILE" ]]; then
                 db_get prometheus-natureremo-exporter/access_token || true
                 access_token=$RET
 
-                touch "$DEFAULT_FILE"
-                chown root:root "$DEFAULT_FILE"
-                chmod 600 "$DEFAULT_FILE"
-                cat <<EOF >"$DEFAULT_FILE"
-NATURE_ACCESS_TOKEN=${access_token}
-EOF
+                touch "$TOKEN_FILE"
+                chown root:prometheus "$TOKEN_FILE"
+                chmod 640 "$TOKEN_FILE"
+                echo "${access_token}" >"$TOKEN_FILE"
             fi
 
         fi
@@ -32,6 +33,9 @@ EOF
             . /usr/share/debconf/confmodule
             db_purge
         fi
+
+        rm -f /etc/prometheus/natureremo/access_token
+        rmdir --ignore-fail-on-non-empty /etc/prometheus/natureremo
         ;;
 esac
 
