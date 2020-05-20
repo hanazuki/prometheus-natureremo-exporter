@@ -1,4 +1,5 @@
 = prometheus-natureremo-exporter(1)
+Kasumi Hanazuki
 :doctype: manpage
 :mansource: github.com/hanazuki/prometheus-natureremo-exporter
 
