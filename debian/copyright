@@ -6,6 +6,104 @@ Files: *
 Copyright: 2020 Kasumi Hanazuki <kasumi@rollingapple.net>
 License: MIT
 
+Files: vendor/github.com/alecthomas/template/*
+Copyright:
+ Copyright (c) 2012 The Go Authors. All rights reserved.
+License: BSD-3-Clause-Google
+
+Files: vendor/github.com/alecthomas/units/*
+Copyright:
+ Copyright (C) 2014 Alec Thomas
+License: MIT
+
+Files: vendor/github.com/beorn7/perks/quantile/*
+Copyright:
+ Copyright (C) 2013 Blake Mizerany
+License: MIT
+
+Files: vendor/github.com/cespare/xxhash/v2/*
+Copyright:
+ Copyright (c) 2016 Caleb Spare
+License: MIT
+
+Files: vendor/github.com/go-kit/kit/log/*
+Copyright:
+ Copyright (c) 2015 Peter Bourgon
+License: MIT
+
+Files: vendor/github.com/go-logfmt/logfmt/*
+Copyright:
+ Copyright (c) 2015 go-logfmt
+License: MIT
+
+Files: vendor/github.com/golang/protobuf/*
+Copyright:
+ Copyright 2010 The Go Authors.  All rights reserved.
+License: BSD-3-Clause-Google
+
+Files: vendor/github.com/hashicorp/go-cleanhttp/*
+Copyright: hashicorp
+License: MPL-2.0
+
+Files: vendor/github.com/matttproud/golang_protobuf_extensions/pbutil/*
+Copyright:
+ Copyright 2012 Matt T. Proud (matt.proud@gmail.com)
+License: Apache-2.0
+
+Files: vendor/github.com/pkg/errors/*
+Copyright:
+ Copyright (c) 2015, Dave Cheney <dave@cheney.net>
+License: BSD-2-Clause
+
+Files: vendor/github.com/prometheus/client_golang/prometheus/*
+Copyright:
+ Copyright 2012-2015 The Prometheus Authors
+ .
+ This product includes software developed at SoundCloud Ltd. (http://soundcloud.com/).
+License: Apache-2.0
+
+Files: vendor/github.com/prometheus/client_model/go/*
+Copyright:
+ Copyright 2012-2015 The Prometheus Authors
+ .
+ This product includes software developed at
+ SoundCloud Ltd. (http://soundcloud.com/).
+License: Apache-2.0
+
+Files: vendor/github.com/prometheus/common/*
+Copyright:
+ Copyright 2015 The Prometheus Authors
+ .
+ This product includes software developed at SoundCloud Ltd. (http://soundcloud.com/).
+License: Apache-2.0
+
+Files: vendor/github.com/prometheus/common/internal/bitbucket.org/ww/goautoneg/*
+Copyright:
+ Copyright (c) 2011, Open Knowledge Foundation Ltd.
+License: BSD-3-Clause-OKFN
+
+Files: vendor/github.com/prometheus/procfs/*
+Copyright:
+ Copyright 2014-2015 The Prometheus Authors
+ .
+ This product includes software developed at SoundCloud Ltd. (http://soundcloud.com/).
+License: Apache-2.0
+
+Files: vendor/golang.org/x/sys/unix/*
+Copyright:
+ Copyright (c) 2009 The Go Authors. All rights reserved.
+License: BSD-3-Clause-Google
+
+Files: vendor/google.golang.org/protobuf/*
+Copyright:
+ Copyright (c) 2018 The Go Authors. All rights reserved.
+License: BSD-3-Clause-Google
+
+Files: vendor/gopkg.in/alecthomas/kingpin.v2/*
+Copyright:
+ Copyright (C) 2014 Alec Thomas
+License: MIT
+
 License: MIT
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
@@ -24,3 +122,102 @@ License: MIT
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
+
+License: BSD-3-Clause-Google
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are
+ met:
+ .
+    * Redistributions of source code must retain the above copyright
+ notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+ copyright notice, this list of conditions and the following disclaimer
+ in the documentation and/or other materials provided with the
+ distribution.
+    * Neither the name of Google Inc. nor the names of its
+ contributors may be used to endorse or promote products derived from
+ this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-3-Clause-OKFN
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are
+ met:
+ .
+     Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+ .
+     Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in
+     the documentation and/or other materials provided with the
+     distribution.
+ .
+     Neither the name of the Open Knowledge Foundation Ltd. nor the
+     names of its contributors may be used to endorse or promote
+     products derived from this software without specific prior written
+     permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+ A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+ HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+ SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+ LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+ DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: BSD-2-Clause
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+ .
+ * Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+ .
+ * Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+ .
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+License: Apache-2.0
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ .
+   http://www.apache.org/licenses/LICENSE-2.0
+ .
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ .
+ On Debian systems, the complete text of the Apache License, Version 2.0
+ can be found in "/usr/share/common-licenses/Apache-2.0".
+
+License: MPL-2.0
+ On Debian systems, the complete text of the Mozilla Public License, v. 2.0
+ can be found in "/usr/share/common-licenses/MPL-2.0".

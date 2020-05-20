@@ -10,5 +10,9 @@ export GOFLAGS=-mod=vendor
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/tmp
 
+override_dh_installdocs:
+	find vendor -name 'NOTICE*' -exec cat {} \; > debian/tmp/NOTICE
+	dh_installdocs debian/tmp/NOTICE
+
 override_dh_installsystemd:
 	dh_installsystemd prometheus-natureremo-exporter.service
